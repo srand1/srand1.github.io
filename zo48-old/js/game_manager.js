@@ -69,8 +69,6 @@ GameManager.prototype.addStartTiles = function () {
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var value = Math.floor(Math.random() * (Tile.levels[Tile.levels.length-1] - Tile.levels[Tile.levels.length-2])) + 1 + Tile.levels[Tile.levels.length-2];
-    // value = Math.random() < 0.4 ? 88+3 : value;
-    // value = Tile.EXTRA+73;
     var tile = new Tile(this.grid.randomAvailableCell(), value);
 
     this.grid.insertTile(tile);
@@ -158,9 +156,6 @@ GameManager.prototype.move = function (direction) {
         let ml = 0;
         if (next && !next.mergedFrom && 0 !== (ml = Tile.getMergeLevel(next, tile)) ) {
           let id = Math.floor(Math.random() * (Tile.levels[ml] - Tile.levels[ml-1])) + 1 + Tile.levels[ml-1];
-          if (Tile.SWITCH.checked && id-Tile.EXTRA === 7) {
-            Tile.DINGDONG.play();
-          }
           var merged = new Tile(positions.next, id);
           merged.mergedFrom = [tile, next];
 
@@ -171,7 +166,7 @@ GameManager.prototype.move = function (direction) {
           tile.updatePosition(positions.next);
 
           // Update the score
-          self.score += 1 << (11-ml);
+          self.score += 1 << (9-ml);
 
           // The mighty 2048 tile
           if (merged.value === 1) self.won = true;
