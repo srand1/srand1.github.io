@@ -70,7 +70,6 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var value = Math.floor(Math.random() * (Tile.levels[Tile.levels.length-1] - Tile.levels[Tile.levels.length-2])) + 1 + Tile.levels[Tile.levels.length-2];
     // value = Math.random() < 0.4 ? 88+3 : value;
-    // value = Math.random() < 0.4 ? -1+3 : 5+3;
     // value = Tile.EXTRA+73;
     var tile = new Tile(this.grid.randomAvailableCell(), value);
 
