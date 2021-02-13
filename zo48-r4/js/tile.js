@@ -93,7 +93,6 @@ Tile.cps = {
  '7,15': '煤蛋',
  '7,24': '煤炭',
  '7,37': '巨杉',
- '7,88': '杉单单开花红艳艳',
  '7,89': '灵杉',
  '7,104': '北杉',
  '7,106': '苏有彭',
@@ -113,11 +112,9 @@ Tile.cps = {
  '33,109': '星树',
  '35,150': '龙媛',
  '36,149': '歆璐',
- '37,88': '巨瑾',
  '37,89': '哥弟',
  '37,91': '巨茹',
  '40,74': '诗情画奕',
- '41,88': '白瑾',
  '41,128': '册白',
  '44,45': '肥兔',
  '48,106': '小彭由',
@@ -128,7 +125,6 @@ Tile.cps = {
  '83,85': '九笨',
  '87,101': '菌爱',
  '88,91': '恩瑾',
- '88,92': '包瑾处理',
  '88,97': '单杠',
  '89,103': '马璐',
  '89,104': '马北',
@@ -150,14 +146,6 @@ Tile.cps = {
 };
 Tile.SWITCH = document.querySelector('#easter');
 Tile.DINGDONG = new Audio('img/dingdong.mp3');
-Tile.VALENTINE = (() => {
-  const local = new Date();
-  const ans = 11 <= local.getDate() && local.getDate() <= 17 && local.getMonth()+1 === 2;
-  if (ans) {
-    Tile.SWITCH.checked = false;
-  }
-  return ans;
-})();
 Tile.getMergeLevel = (x, y) => {
   /*
   Object.keys(Tile.cps).forEach(k => {
@@ -168,7 +156,7 @@ Tile.getMergeLevel = (x, y) => {
   });
   */
 
-  if (Tile.SWITCH.checked && !Tile.VALENTINE && (x.value-Tile.EXTRA === 88 || y.value-Tile.EXTRA === 88)) {
+  if (Tile.SWITCH.checked && (x.value-Tile.EXTRA === 88 || y.value-Tile.EXTRA === 88)) {
     return x.value === y.value ? x.level() - 1 : 0;
   }
   if (Tile.SWITCH.checked && x.value === 1 && y.value === 1) {
@@ -180,10 +168,7 @@ Tile.getMergeLevel = (x, y) => {
   }
   const l = x.level();
   const eq = y.level() === l;
-  let cp = Tile.cps[(x.value-Tile.EXTRA)+','+(y.value-Tile.EXTRA)];
-  if (Tile.SWITCH.checked && Tile.VALENTINE && (x.value-Tile.EXTRA === 88 || y.value-Tile.EXTRA === 88)) {
-    cp = `找一个最爱的深爱的相爱的亲爱的人: ${x.text()} + ${y.text()}`;
-  }
+  const cp = Tile.cps[(x.value-Tile.EXTRA)+','+(y.value-Tile.EXTRA)];
   if (!cp) {
     if (eq) {
       return l-1;
