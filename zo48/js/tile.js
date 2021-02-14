@@ -168,6 +168,13 @@ Tile.getMergeLevel = (x, y) => {
   });
   */
 
+  if (
+    Tile.SWITCH.checked && Tile.VALENTINE
+    && (x.value-Tile.EXTRA === 104 || y.value-Tile.EXTRA === 104)
+    && (x.value-Tile.EXTRA !== 88 && y.value-Tile.EXTRA !== 88)
+  ) {
+    return x.value === y.value ? x.level() - 1 : 0;
+  }
   if (Tile.SWITCH.checked && !Tile.VALENTINE && (x.value-Tile.EXTRA === 88 || y.value-Tile.EXTRA === 88)) {
     return x.value === y.value ? x.level() - 1 : 0;
   }
