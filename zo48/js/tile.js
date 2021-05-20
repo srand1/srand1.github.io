@@ -100,9 +100,12 @@ Tile.cps = {
  '8,19': '左佳',
  '9,75': '水灰',
  '10,11': '昕羊',
+ '13,23': '艹云',
  '14,66': '杉源',
  '15,17': '蛋壳',
+ '15,24': '蛋藤',
  '16,18': 'so蕾',
+ '19,29': '奶糖',
  '20,67': '舒肤佳',
  '24,135': 'w刘',
  '25,136': '比翼琪霏',
@@ -124,6 +127,7 @@ Tile.cps = {
  '57,94': '盈刘之主',
  '65,70': '多云转晴',
  '70,104': '北京爱晴',
+ '70,144': '晴意农农',
  '78,93': '青吕',
  '83,85': '九笨',
  '87,101': '菌爱',
@@ -141,18 +145,22 @@ Tile.cps = {
  '104,107': '北蔓',
  '104,109': '北极星',
  '104,128': '北册',
+ '123,127': '包安',
  '124,125': '月娇',
  '124,128': '月册',
  '125,143': '大小乔',
  '134,140': 'w门',
+ '142,157': '泡灰',
  '143,148': '乔菲',
+ '156,173': '羔羊',
  '173,176': '艾馨',
 };
 Tile.SWITCH = document.querySelector('#easter');
 Tile.DINGDONG = new Audio('img/dingdong.mp3');
 Tile.VALENTINE = (() => {
   const local = new Date();
-  const ans = 11 <= local.getDate() && local.getDate() <= 17 && local.getMonth()+1 === 2;
+  const ans = local.getMonth()+1 === 2 && 11 <= local.getDate() && local.getDate() <= 17 ||
+              local.getMonth()+1 === 5 && 20 <= local.getDate() && local.getDate() <= 21;
   if (ans) {
     Tile.SWITCH.checked = false;
   }
